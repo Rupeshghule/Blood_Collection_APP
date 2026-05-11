@@ -1,24 +1,18 @@
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { HeaderButton } from 'components/HeaderButton';
+import { Menu } from 'lucide-react-native';
 import TabNavigator from './tab-navigator';
-import Home from '../screens/home';
 
 const Drawer = createDrawerNavigator({
+  initialRouteName: 'Tabs',
   screens: {
-    Home: {
-      screen: Home,
-      options: {
-        drawerIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
-      },
-    },
     Tabs: {
       screen: TabNavigator,
       options: ({ navigation }) => ({
-        headerRight: () => <HeaderButton onPress={() => navigation.navigate('Modal')} />,
-        drawerIcon: ({ size, color }) => (
-          <MaterialIcons name="border-bottom" size={size} color={color} />
-        ),
+        headerShown: false,
+        drawerItemStyle: {
+          display: 'none',
+        },
+        drawerIcon: ({ size, color }) => <Menu size={size} color={color} strokeWidth={2.2} />,
       }),
     },
   },

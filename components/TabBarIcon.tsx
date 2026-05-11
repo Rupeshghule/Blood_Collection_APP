@@ -1,11 +1,9 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { StyleSheet } from 'react-native';
+import { LucideIcon } from 'lucide-react-native';
 
-export const TabBarIcon = (props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) => {
-  return <FontAwesome size={28} style={styles.tabBarIcon} {...props} />;
+export const TabBarIcon = (props: { icon: LucideIcon; color: string }) => {
+  const { icon: Icon, color } = props;
+  return <Icon size={28} color={color} strokeWidth={2.2} style={styles.tabBarIcon} />;
 };
 
 export const styles = StyleSheet.create({
