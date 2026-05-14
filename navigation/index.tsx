@@ -6,6 +6,8 @@ import OPTVerifyScreen from 'screens/Auth/OPTVerifyScreen';
 import AllPackegesSreen from 'screens/ALLPackeges';
 import AboutUsScreen from 'screens/About Us/AboutUsScreen';
 import { Colors } from 'Constants/Colors';
+import PackageDetails from 'screens/PackageDetails/PackageDetails';
+import BookingScreen from 'screens/Booking/BookingScreen';
 
 const Stack = createStackNavigator({
   initialRouteName: 'Login',
@@ -35,6 +37,18 @@ const Stack = createStackNavigator({
         headerStyle: {
           backgroundColor: Colors.redishBG,
         },
+      },
+    },
+    PackageDetails: {
+      screen: PackageDetails,
+      options: {
+        headerShown: false,
+      },
+    },
+    BookingScreen: {
+      screen: BookingScreen,
+      options: {
+        headerShown: false,
       },
     },
     DrawerNavigator: {

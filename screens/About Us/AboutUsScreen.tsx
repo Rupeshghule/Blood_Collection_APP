@@ -9,6 +9,7 @@ import StatsCard from 'components/cards/about us/StatsCard';
 import ServiceCoverage from 'components/cards/about us/ServiceCoverage';
 import MissionVisionCards from 'components/cards/about us/MissionVisionCards';
 import ContactCard from 'components/cards/about us/ContactCard';
+import ChooseUsCard from 'components/cards/about us/chooseUsCard';
 
 const AboutUsScreen = () => {
   return (
@@ -30,16 +31,17 @@ const AboutUsScreen = () => {
           }}>
           <InfoCard />
           <View className="mt-4 items-center">
-            <Text className="text-[24px] font-extrabold " style={{ color: Colors.textBlack }}>
-              Why Choose Our Labs
+            <Text className="text-2xl font-extrabold " style={{ color: Colors.textBlack }}>
+              Why Choose Pannu Bhaware ?
             </Text>
 
             <View className="mt-2 h-[4px] w-[52px] rounded-full bg-[#d61f2c]" />
           </View>
           <WhyChooseCard />
-          <StatsCard />
-          <ServiceCoverage />
+          {/* <ChooseUsCard/> */}
+          {/* <StatsCard /> */}
           <MissionVisionCards />
+          <ServiceCoverage />
           <ContactCard />
         </ScrollView>
       </SafeAreaView>

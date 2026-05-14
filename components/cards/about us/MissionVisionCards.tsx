@@ -25,14 +25,12 @@ const cards = [
 export default function MissionVisionCards() {
   return (
     <View className="w-full max-w-[360px] py-5">
-      <View className="items-center">
+      <View>
         <Text className="text-[24px] font-extrabold" style={{ color: Colors.textBlack }}>
           Mission & Vision
         </Text>
 
-        <Text
-          className="mt-2 text-center text-[14px] leading-6"
-          style={{ color: Colors.textGray }}>
+        <Text className="  text-[14px] leading-6" style={{ color: Colors.textGray }}>
           Short, clear goals that guide how we serve patients every day.
         </Text>
       </View>
@@ -50,14 +48,14 @@ export default function MissionVisionCards() {
                       <Icon size={18} color={item.color} strokeWidth={2.4} />
                     </View>
 
-                    <Text className="ml-3 text-[18px] font-bold" style={{ color: Colors.textBlack }}>
+                    <Text
+                      className="ml-3 text-[18px] font-bold"
+                      style={{ color: Colors.textBlack }}>
                       {item.title}
                     </Text>
                   </View>
 
-                  <Text
-                    className="mt-3 text-[13px] leading-5"
-                    style={{ color: Colors.textGray }}>
+                  <Text className="mt-3 text-[13px] leading-5" style={{ color: Colors.textGray }}>
                     {item.subtitle}
                   </Text>
                 </View>

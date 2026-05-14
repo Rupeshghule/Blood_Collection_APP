@@ -1,12 +1,13 @@
 import { Colors } from 'Constants/Colors';
 import CustomButton from 'components/Buttons/CustomButton';
 import { ArrowRight, FlaskConical, SlidersHorizontal } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import ParametersModal from '../../../modal/Parameters/ParametersModal';
 
-type PackageCardProps = {
+export type PackageItem = {
   badge: string;
   audience: string;
   title: string;
@@ -15,6 +16,9 @@ type PackageCardProps = {
   price: string;
   oldPrice: string;
   note: string;
+};
+
+type PackageCardProps = PackageItem & {
   fullWidth?: boolean;
 };
 
@@ -30,11 +34,28 @@ const PackageCard = ({
   fullWidth = false,
 }: PackageCardProps) => {
   const [isParametersVisible, setIsParametersVisible] = useState(false);
+  const navigation = useNavigation<any>();
+  const packageData = {
+    badge,
+    audience,
+    title,
+    description,
+    parameters,
+    price,
+    oldPrice,
+    note,
+  };
+  const handleOpenPackage = () =>
+    navigation.navigate('PackageDetails', {
+      packageData,
+    });
 
   return (
     <>
-      <View
-        className={`h-[350px] rounded-[28px] border border-[#E8EDF3] bg-white p-5 shadow-sm ${
+      <TouchableOpacity
+        activeOpacity={0.9}
+        onPress={handleOpenPackage}
+        className={`h-[330px] rounded-[28px] border border-[#E8EDF3] bg-white p-4 shadow-sm ${
           fullWidth ? 'w-full' : 'mr-4 w-[340px]'
         }`}>
         <View className="flex-row items-center justify-between">
@@ -51,7 +72,7 @@ const PackageCard = ({
           </Text>
         </View>
 
-        <View className="mt-2 flex-1">
+        <View className="mt-1 flex-1">
           <Text
             numberOfLines={2}
             className="text-xl font-extrabold leading-8"
@@ -59,18 +80,18 @@ const PackageCard = ({
             {title}
           </Text>
 
-          <Text className="mt-1 text-sm leading-7" style={{ color: Colors.textGray }}>
+          <Text className="mt-1 text-sm leading-6" style={{ color: Colors.textGray }}>
             {description}
           </Text>
 
-          <View className="mt-2 flex-row items-center">
+          <View className="mt-1 flex-row items-center">
             <FlaskConical size={14} color={Colors.textBlue} strokeWidth={2.3} />
             <Text className="ml-2 text-sm font-bold" style={{ color: Colors.textBlack }}>
               {parameters}
             </Text>
           </View>
 
-          <View className="mt-3 flex-row items-center">
+          <View className="mt-2 flex-row items-center">
             <Text className="text-xl font-extrabold" style={{ color: Colors.textRed }}>
               {price}
             </Text>
@@ -111,9 +132,10 @@ const PackageCard = ({
             textColor={Colors.textWhite}
             icon={<ArrowRight size={14} color={Colors.textWhite} strokeWidth={2.2} />}
             iconPosition="right"
+            onPress={() => navigation.navigate('BookingScreen', { packageData })}
           />
         </View>
-      </View>
+      </TouchableOpacity>
 
       <ParametersModal
         visible={isParametersVisible}

@@ -100,12 +100,12 @@ const Home = () => {
 
           <View className="mt-7">
             <View className="flex-row items-center justify-between px-4">
-              <Text className="text-[22px] font-extrabold" style={{ color: Colors.textBlack }}>
+              <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
                 Popular Packages
               </Text>
 
               <TouchableOpacity onPress={() => navigation.navigate('AllPackegesSreen')}>
-                <Text className="text-[13px] font-semibold" style={{ color: Colors.textBlue }}>
+                <Text className="text-xs font-semibold" style={{ color: Colors.textBlue }}>
                   View All
                 </Text>
               </TouchableOpacity>
@@ -137,7 +137,7 @@ const Home = () => {
           </View>
 
           <View className="mt-8 px-4">
-            <Text className="text-[24px] font-extrabold text-[#1E1E1E]">Why Choose Us?</Text>
+            <Text className="text-2xl font-extrabold text-[#1E1E1E]">Why Choose Us?</Text>
 
             <View className="mt-5">
               {features.map((item) => (
@@ -147,9 +147,9 @@ const Home = () => {
                   </View>
 
                   <View className="ml-4 flex-1">
-                    <Text className="text-[15px] font-bold text-[#1E1E1E]">{item.title}</Text>
+                    <Text className="text-sm font-bold text-[#1E1E1E]">{item.title}</Text>
 
-                    <Text className="mt-1 text-[12px] leading-5 text-[#7B7B7B]">
+                    <Text className="mt-1 text-xs leading-5 text-[#7B7B7B]">
                       {item.subtitle}
                     </Text>
                   </View>

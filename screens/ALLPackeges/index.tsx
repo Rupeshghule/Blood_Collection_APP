@@ -68,7 +68,7 @@ const AllPackegesSreen = () => {
       <SafeAreaView className="flex-1">
         <View className='mb-4'>
           <View className="px-4 pt-2">
-            <Text className="text-[26px] font-extrabold" style={{ color: Colors.textBlack }}>
+            <Text className="text-3xl font-extrabold" style={{ color: Colors.textBlack }}>
               All Packages
             </Text>
             <Text className="mt-1 text-sm" style={{ color: Colors.textGray }}>
