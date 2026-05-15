@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Calendar, Calendar1, FileText, FlaskConical, House, Menu, User } from 'lucide-react-native';
+import { BriefcaseMedical, FileText, HomeIcon, House, User } from 'lucide-react-native';
 import { useEffect, useRef } from 'react';
 import { Animated, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -8,9 +8,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Colors } from 'Constants/Colors';
 import ProfileScreen from 'screens/Profile/ProfileScreen';
 import Home from '../screens/Home/home';
-import One from '../screens/one';
-import Two from '../screens/two';
 import ReportScreen from 'screens/Reports/ReportScreen';
+import PackagesScreen from 'screens/PackagesScreen/PackagesScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,9 +17,7 @@ function AppHeader({ navigation }: { navigation: any }) {
   return (
     <View style={styles.headerWrap}>
       <View style={styles.headerContent}>
-        <Pressable onPress={() => navigation.getParent()?.openDrawer()} style={styles.sideButton}>
-          <Menu size={32} color="#0B6C93" strokeWidth={2.3} />
-        </Pressable>
+     
 
         <View style={styles.brandBlock}>
           <Image source={require('../assets/Logo.png')} resizeMode="contain" style={styles.logo} />
@@ -93,7 +90,7 @@ function MedicalTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const iconMap: Record<string, any> = {
     Home: House,
     Reports: FileText,
-    Appointments: Calendar,
+    PackagesScreen: BriefcaseMedical,
     Profile: User,
   };
 
@@ -138,8 +135,12 @@ export default function AppTabs() {
         header: () => <AppHeader navigation={navigation} />,
       })}>
       <Tab.Screen name="Home" component={Home} options={{ title: 'Home' }} />
-      <Tab.Screen name="Reports" component={ReportScreen} options={{ title: 'Appointments' }} />
-      <Tab.Screen name="Appointments" component={One} options={{ title: 'Reports' }} />
+      <Tab.Screen
+        name="PackagesScreen"
+        component={PackagesScreen}
+        options={{ title: 'Packages' }}
+      />
+      <Tab.Screen name="Reports" component={ReportScreen} options={{ title: 'Reports' }} />
       <Tab.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );

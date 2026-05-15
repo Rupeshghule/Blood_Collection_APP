@@ -25,7 +25,7 @@ export default function ServiceCoverage() {
   return (
     <View className="w-full max-w-[360px] pt-6">
       <View className="">
-        <Text className="text-[24px] font-extrabold" style={{ color: Colors.textBlack }}>
+        <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
           Service Coverage
         </Text>
 
@@ -46,11 +46,11 @@ export default function ServiceCoverage() {
             </View>
 
             <View className="flex-1">
-              <Text className="text-[18px] font-bold" style={{ color: Colors.textBlack }}>
+              <Text className="text-lg font-bold" style={{ color: Colors.textBlack }}>
                 {item.title}
               </Text>
 
-              <Text className="mt-1 text-[13px] leading-5" style={{ color: Colors.textGray }}>
+              <Text className="mt-1 text-sm leading-5" style={{ color: Colors.textGray }}>
                 {item.subtitle}
               </Text>
             </View>

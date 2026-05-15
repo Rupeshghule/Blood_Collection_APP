@@ -26,11 +26,11 @@ export default function MissionVisionCards() {
   return (
     <View className="w-full max-w-[360px] py-5">
       <View>
-        <Text className="text-[24px] font-extrabold" style={{ color: Colors.textBlack }}>
+        <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
           Mission & Vision
         </Text>
 
-        <Text className="  text-[14px] leading-6" style={{ color: Colors.textGray }}>
+        <Text className="  text-sm leading-6" style={{ color: Colors.textGray }}>
           Short, clear goals that guide how we serve patients every day.
         </Text>
       </View>
@@ -49,13 +49,13 @@ export default function MissionVisionCards() {
                     </View>
 
                     <Text
-                      className="ml-3 text-[18px] font-bold"
+                      className="ml-3 text-lg font-bold"
                       style={{ color: Colors.textBlack }}>
                       {item.title}
                     </Text>
                   </View>
 
-                  <Text className="mt-3 text-[13px] leading-5" style={{ color: Colors.textGray }}>
+                  <Text className="mt-3 text-sm leading-5" style={{ color: Colors.textGray }}>
                     {item.subtitle}
                   </Text>
                 </View>
@@ -68,7 +68,7 @@ export default function MissionVisionCards() {
                   <View key={point} className="mb-2 flex-row items-center">
                     <View style={[styles.dot, { backgroundColor: item.color }]} />
 
-                    <Text className="ml-3 flex-1 text-[13px]" style={{ color: Colors.textBlack }}>
+                    <Text className="ml-3 flex-1 text-sm" style={{ color: Colors.textBlack }}>
                       {point}
                     </Text>
                   </View>

@@ -45,7 +45,7 @@ const CustomButton = ({
   pressedBackgroundColor,
   height = 'h-12',
   width = 'w-full',
-  size = 'text-[15px]',
+  size = 'text-sm',
   disabled = false,
   loading = false,
   icon,

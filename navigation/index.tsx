@@ -1,13 +1,17 @@
 import { createStaticNavigation, StaticParamList } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/Auth/LoginScreen';
-import DrawerNavigator from './drawer-navigator';
 import OPTVerifyScreen from 'screens/Auth/OPTVerifyScreen';
 import AllPackegesSreen from 'screens/ALLPackeges';
 import AboutUsScreen from 'screens/About Us/AboutUsScreen';
 import { Colors } from 'Constants/Colors';
 import PackageDetails from 'screens/PackageDetails/PackageDetails';
 import BookingScreen from 'screens/Booking/BookingScreen';
+import MemberDetailsScreen from 'screens/MemberDetails/MemberDetailsScreen';
+import EditProfile from 'screens/Profile/EditProfile';
+import TabNavigator from './tab-navigator';
+import SupportScreen from 'screens/Support/SupportScreen';
+import FAQScreen from 'screens/FAQ/FAQScreen';
 
 const Stack = createStackNavigator({
   initialRouteName: 'Login',
@@ -51,8 +55,32 @@ const Stack = createStackNavigator({
         headerShown: false,
       },
     },
-    DrawerNavigator: {
-      screen: DrawerNavigator,
+    MemberDetailsScreen: {
+      screen: MemberDetailsScreen,
+      options: {
+        headerShown: false,
+      },
+    },
+    EditProfile: {
+      screen: EditProfile,
+      options: {
+        headerShown: false,
+      },
+    },
+    FAQScreen: {
+      screen: FAQScreen,
+      options: {
+        headerShown: false,
+      },
+    },
+    SupportScreen: {
+      screen: SupportScreen,
+      options: {
+        headerShown: false,
+      },
+    },
+    Tabs: {
+      screen: TabNavigator,
       options: {
         headerShown: false,
       },

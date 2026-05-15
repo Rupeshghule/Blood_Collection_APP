@@ -1,13 +1,13 @@
-import React from 'react';
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ArrowLeft, ArrowRight, ClipboardList, FlaskConical, House } from 'lucide-react-native';
 import { Colors } from 'Constants/Colors';
 import CustomButton from 'components/Buttons/CustomButton';
 import { type PackageItem } from 'components/cards/PackagesCards/PackageCards';
 import PackageHeroCard from 'components/Packagedetails/PackageHeroCard';
+import ParametersModal from '../../modal/Parameters/ParametersModal';
+import AppGradientScreen from 'components/layout/AppGradientScreen';
 
 type RouteParams = {
   packageData?: PackageItem;
@@ -26,6 +26,7 @@ const fallbackPackage: PackageItem = {
 };
 
 const PackageDetails = () => {
+  const [isParametersVisible, setIsParametersVisible] = useState(false);
   const navigation = useNavigation<any>();
   const route = useRoute();
   const { packageData = fallbackPackage } = (route.params as RouteParams) ?? {};
@@ -55,15 +56,7 @@ const PackageDetails = () => {
   ];
 
   return (
-    <LinearGradient
-      colors={[Colors.redishBG, '#F6E9EA', '#F6F5F6', '#FFFFFF']}
-      locations={[0, 0.24, 0.62, 1]}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={{ flex: 1 }}>
-      <SafeAreaView className="flex-1">
-        <StatusBar barStyle="dark-content" backgroundColor={Colors.redishBG} />
-
+    <AppGradientScreen>
         <View className="flex-row items-center justify-between px-4 pb-3 pt-2">
           <CustomButton
             title="Back"
@@ -94,22 +87,26 @@ const PackageDetails = () => {
           <PackageHeroCard packageData={packageData} />
 
           <View className="mt-6">
-            <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
+            <Text className="text-xl font-extrabold" style={{ color: Colors.textBlack }}>
               Package Highlights
             </Text>
 
-            <Text className="mt-1 text-sm" style={{ color: Colors.textGray }}>
+            <Text className="text-sm" style={{ color: Colors.textGray }}>
               A quick overview of what makes this package useful and convenient.
             </Text>
           </View>
 
           <View className="mt-4">
-            {highlights.map((item) => {
+            {highlights.map((item, index) => {
               const Icon = item.icon;
+              const isParametersCard = index === 0;
 
               return (
-                <View
+                <TouchableOpacity
                   key={item.title}
+                  activeOpacity={isParametersCard ? 0.9 : 1}
+                  disabled={!isParametersCard}
+                  onPress={isParametersCard ? () => setIsParametersVisible(true) : undefined}
                   className="mb-4 flex-row rounded-[26px] p-4"
                   style={styles.infoCard}>
                   <View
@@ -127,12 +124,12 @@ const PackageDetails = () => {
                       {item.subtitle}
                     </Text>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </View>
 
-          <View className="rounded-[28px] p-5" style={styles.summaryCard}>
+          {/* <View className="rounded-[28px] p-5" style={styles.summaryCard}>
             <Text className="text-lg font-extrabold" style={{ color: Colors.textBlack }}>
               Before You Book
             </Text>
@@ -146,7 +143,7 @@ const PackageDetails = () => {
               Our team will confirm fasting requirements, home visit timing, and report delivery
               details after booking.
             </Text>
-          </View>
+          </View> */}
         </ScrollView>
 
         <View className="absolute bottom-0 left-0 right-0 px-4 pb-6 pt-4" style={styles.bottomBar}>
@@ -178,8 +175,18 @@ const PackageDetails = () => {
             onPress={() => navigation.navigate('BookingScreen', { packageData })}
           />
         </View>
-      </SafeAreaView>
-    </LinearGradient>
+
+        <ParametersModal
+          visible={isParametersVisible}
+          onClose={() => setIsParametersVisible(false)}
+          title={packageData.title}
+          description={packageData.description}
+          parameters={packageData.parameters}
+          price={packageData.price}
+          oldPrice={packageData.oldPrice}
+          note={packageData.note}
+        />
+    </AppGradientScreen>
   );
 };
 

@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from 'Constants/Colors';
@@ -75,11 +75,13 @@ const Home = () => {
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}>
       <SafeAreaView className="flex-1">
+        <StatusBar barStyle="dark-content" backgroundColor={Colors.redishBG} />
+
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 40 }}>
           <View className="px-4">
-            <Text className="text-3xl font-extrabold" style={{ color: Colors.textBlack }}>
+            <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
               Hello, Aman
             </Text>
 
@@ -121,35 +123,44 @@ const Home = () => {
                 paddingTop: 16,
               }}
               keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => (
-                <PackageCard
-                  badge={item.badge}
-                  audience={item.audience}
-                  title={item.title}
-                  description={item.description}
-                  parameters={item.parameters}
-                  price={item.price}
-                  oldPrice={item.oldPrice}
-                  note={item.note}
-                />
-              )}
+              renderItem={({ item }) => <PackageCard item={item} />}
             />
           </View>
 
           <View className="mt-8 px-4">
-            <Text className="text-2xl font-extrabold text-[#1E1E1E]">Why Choose Us?</Text>
+            <Text className="text-xl font-extrabold" style={{ color: Colors.textBlack }}>
+              Why Choose Us?
+            </Text>
 
-            <View className="mt-5">
+            <View className="mt-5 flex-row flex-wrap justify-between">
               {features.map((item) => (
-                <View key={item.id} className="mb-6 flex-row items-start">
-                  <View className="h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
-                    <item.icon size={22} color="#0F7497" strokeWidth={2.2} />
+                <View
+                  key={item.id}
+                  className="mb-3 w-[48.5%] rounded-[18px] border bg-white px-3 py-3"
+                  style={{
+                    borderColor: Colors.chipBorder,
+                    shadowColor: Colors.blueShadow,
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.07,
+                    shadowRadius: 10,
+                    elevation: 3,
+                  }}>
+                  <View
+                    className="h-9 w-9 items-center justify-center self-center rounded-2xl"
+                    style={{ backgroundColor: Colors.blueshBG }}>
+                    <item.icon size={16} color={Colors.textBlue} strokeWidth={2.2} />
                   </View>
 
-                  <View className="ml-4 flex-1">
-                    <Text className="text-sm font-bold text-[#1E1E1E]">{item.title}</Text>
+                  <View className="mt-2.5">
+                    <Text
+                      className="text-center text-xs font-bold"
+                      style={{ color: Colors.textBlack }}>
+                      {item.title}
+                    </Text>
 
-                    <Text className="mt-1 text-xs leading-5 text-[#7B7B7B]">
+                    <Text
+                      className="mt-1 text-center text-xs leading-4"
+                      style={{ color: Colors.textGray }}>
                       {item.subtitle}
                     </Text>
                   </View>

@@ -24,7 +24,7 @@ const PackageHeroCard = ({ packageData }: PackageHeroCardProps) => {
         </View>
       </View>
 
-      <Text className="mt-3 text-3xl font-extrabold leading-10" style={{ color: Colors.textBlack }}>
+      <Text className="mt-3 text-2xl font-extrabold leading-10" style={{ color: Colors.textBlack }}>
         {packageData.title}
       </Text>
 
@@ -33,7 +33,7 @@ const PackageHeroCard = ({ packageData }: PackageHeroCardProps) => {
       </Text>
 
       <View className="mt-4 flex-row items-end">
-        <Text className="text-3xl font-extrabold" style={{ color: Colors.textRed }}>
+        <Text className="text-2xl font-extrabold" style={{ color: Colors.textRed }}>
           {packageData.price}
         </Text>
 

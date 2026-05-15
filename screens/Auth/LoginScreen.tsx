@@ -25,7 +25,7 @@ const LoginScreen = () => {
             />
 
             <Text
-              className="mt-2 text-center text-4xl font-extrabold leading-10"
+              className="mt-2 text-center text-2xl font-extrabold leading-10"
               style={{ color: Colors.textBlack }}>
               Welcome to Hadapsar Labs
             </Text>
@@ -33,12 +33,12 @@ const LoginScreen = () => {
             <Text
               className=" px-5 text-center text-sm leading-6"
               style={{ color: Colors.textGray }}>
-              Your trusted partner in home health collection
+              Your trusted partner in blood collection
             </Text>
           </View>
           <SendOTPCard />
 
-          <View className="mt-10 items-center">
+          <View className="mt-4 items-center">
             <Text className="text-xs" style={{ color: '#8A8A8A' }}>
               {"Don't have an account?"}{' '}
               <Text className="font-semibold" style={{ color: '#0E8AD9' }}>

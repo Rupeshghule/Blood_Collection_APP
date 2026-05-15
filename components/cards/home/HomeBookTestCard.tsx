@@ -4,8 +4,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from 'Constants/Colors';
 import CustomButton from 'components/Buttons/CustomButton';
 import { House, SquarePlus } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeBookTestCard = () => {
+  const navigation = useNavigation<any>();
+
   return (
     <View
       style={{
@@ -29,12 +32,12 @@ const HomeBookTestCard = () => {
         />
         <View className="flex-row items-center gap-2">
           <House color={Colors.textWhite} size={24} strokeWidth={2.3} />
-          <Text className="text-[24px] font-bold " style={{ color: Colors.textWhite }}>
+          <Text className="text-2xl font-bold " style={{ color: Colors.textWhite }}>
             Book Home Visit
           </Text>
         </View>
 
-        <Text className="mt-2 text-[13px] leading-5 " style={{ color: Colors.textWhite }}>
+        <Text className="mt-2 text-sm leading-5 " style={{ color: Colors.textWhite }}>
           Samples collected from your doorstep
         </Text>
 
@@ -44,13 +47,14 @@ const HomeBookTestCard = () => {
           width="w-auto"
           height="h-12"
           rounded="rounded-full"
-          size="text-[13px]"
+          size="text-sm"
           backgroundColor={Colors.textWhite}
           borderColor="rgba(255,255,255,0.75)"
           textColor="#005E89"
           buttonStyle={{
             paddingHorizontal: 20,
           }}
+          onPress={() => navigation.navigate('BookingScreen', { bookingMode: 'homeVisit' })}
         />
 
         <View className="absolute bottom-0 right-0 opacity-20">

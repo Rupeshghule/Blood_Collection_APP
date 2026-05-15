@@ -1,72 +1,170 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Clock3, CircleHelp, Info, LogOut, Plus } from 'lucide-react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { CircleHelp, Info, LogOut, Plus, Headset } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Colors } from 'Constants/Colors';
 import CustomCircleButton from 'components/Buttons/CustomCircleButton';
 import MemberCard from 'components/Profile/MemberCard';
 import ProfileHeaderCard from 'components/Profile/ProfileHeaderCard';
 import ProfileSettingCard from 'components/Profile/ProfileSettingCard';
+import AddFamilyMemberModal from '../../modal/add member/AddFamilyMemberModal';
+import AppGradientScreen from 'components/layout/AppGradientScreen';
 
-const familyMembers = [
+type MemberHistoryItem = {
+  id: string;
+  test: string;
+  date: string;
+  status: string;
+  amount: string;
+};
+
+type FamilyMember = {
+  id: number;
+  name: string;
+  relation: string;
+  blood: string;
+  age: string;
+  image: string;
+  history: MemberHistoryItem[];
+};
+
+const initialFamilyMembers: FamilyMember[] = [
   {
     id: 1,
     name: 'Priya Verma',
     relation: 'Spouse',
     blood: 'A Positive',
+    age: '31',
     image: 'https://randomuser.me/api/portraits/women/44.jpg',
+    history: [
+      {
+        id: 'priya-1',
+        test: 'Thyroid Profile',
+        date: '12 Mar 2026',
+        status: 'Completed',
+        amount: 'Rs. 1,450',
+      },
+      {
+        id: 'priya-2',
+        test: 'Vitamin D Test',
+        date: '21 Jan 2026',
+        status: 'Completed',
+        amount: 'Rs. 1,100',
+      },
+    ],
   },
   {
     id: 2,
     name: 'Om Prakash',
     relation: 'Father',
     blood: 'O Negative',
+    age: '63',
     image: 'https://randomuser.me/api/portraits/men/32.jpg',
+    history: [
+      {
+        id: 'om-1',
+        test: 'Cardiac Risk Screening',
+        date: '08 Apr 2026',
+        status: 'Completed',
+        amount: 'Rs. 1,999',
+      },
+    ],
   },
   {
     id: 3,
     name: 'Aryan Verma',
     relation: 'Son',
     blood: 'B Positive',
+    age: '8',
     image: 'https://randomuser.me/api/portraits/boys/20.jpg',
+    history: [
+      {
+        id: 'aryan-1',
+        test: 'CBC Test',
+        date: '15 Feb 2026',
+        status: 'Completed',
+        amount: 'Rs. 650',
+      },
+    ],
   },
 ];
 
 const settings = [
   {
     id: 1,
-    title: 'Booking History',
-    subtitle: 'View your past laboratory visits',
-    icon: Clock3,
+    title: 'FAQ',
+    subtitle: 'Common questions about bookings, reports, and support',
+    icon: CircleHelp,
+    screen: 'FAQScreen',
   },
   {
     id: 2,
     title: 'Support',
     subtitle: 'Help center and contact us',
-    icon: CircleHelp,
+    icon: Headset,
+    screen: 'SupportScreen',
   },
   {
     id: 3,
     title: 'About Us',
     subtitle: 'Learn more about Hadapsar Labs',
     icon: Info,
+    screen: 'AboutUsScreen',
   },
 ];
 
 const ProfileScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+  const [familyMembers, setFamilyMembers] = useState(initialFamilyMembers);
+  const [isAddMemberVisible, setIsAddMemberVisible] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [age, setAge] = useState('');
+  const [bloodGroup, setBloodGroup] = useState('');
+  const [relation, setRelation] = useState('');
+
+  const handleCloseAddMemberModal = () => {
+    setIsAddMemberVisible(false);
+    setFullName('');
+    setAge('');
+    setBloodGroup('');
+    setRelation('');
+  };
+
+  const handleSaveFamilyMember = () => {
+    const nameValue = fullName.trim();
+    const ageValue = age.trim();
+    const bloodGroupValue = bloodGroup.trim();
+    const relationValue = relation.trim();
+
+    if (!nameValue || !ageValue || !bloodGroupValue || !relationValue) {
+      return;
+    }
+
+    const newMember: FamilyMember = {
+      id: Date.now(),
+      name: nameValue,
+      relation: relationValue,
+      blood: bloodGroupValue,
+      age: ageValue,
+      image: 'https://randomuser.me/api/portraits/lego/1.jpg',
+      history: [
+        {
+          id: `history-${Date.now()}`,
+          test: 'No bookings yet',
+          date: 'New Member',
+          status: 'Pending',
+          amount: 'Rs. 0',
+        },
+      ],
+    };
+
+    setFamilyMembers((currentMembers) => [newMember, ...currentMembers]);
+    setIsAddMemberVisible(false);
+    handleCloseAddMemberModal();
+  };
 
   return (
-    <LinearGradient
-      colors={[Colors.redishBG, '#F6E9EA', '#F6F5F6', '#FFFFFF']}
-      locations={[0, 0.24, 0.62, 1]}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={{ flex: 1 }}>
-      <SafeAreaView className="flex-1">
-        <StatusBar barStyle="dark-content" backgroundColor={Colors.redishBG} />
+    <AppGradientScreen>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
@@ -95,6 +193,7 @@ const ProfileScreen = () => {
               <CustomCircleButton
                 icon={<Plus size={20} color={Colors.textWhite} strokeWidth={2.5} />}
                 title={`Add${'\n'}New`}
+                onPress={() => setIsAddMemberVisible(true)}
               />
             </View>
 
@@ -105,6 +204,7 @@ const ProfileScreen = () => {
                 relation={member.relation}
                 blood={member.blood}
                 imageUri={member.image}
+                onPress={() => navigation.navigate('MemberDetailsScreen', { member })}
               />
             ))}
           </View>
@@ -122,11 +222,7 @@ const ProfileScreen = () => {
                     title={item.title}
                     subtitle={item.subtitle}
                     icon={item.icon}
-                    onPress={() => {
-                      if (item.id === 3) {
-                        navigation.navigate('AboutUsScreen');
-                      }
-                    }}
+                    onPress={() => navigation.navigate(item.screen)}
                   />
                 );
               })}
@@ -152,8 +248,23 @@ const ProfileScreen = () => {
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
-    </LinearGradient>
+
+        <AddFamilyMemberModal
+          modal={{
+            visible: isAddMemberVisible,
+            fullName,
+            age,
+            bloodGroup,
+            relation,
+            onChangeFullName: setFullName,
+            onChangeAge: setAge,
+            onChangeBloodGroup: setBloodGroup,
+            onChangeRelation: setRelation,
+            onClose: handleCloseAddMemberModal,
+            onSave: handleSaveFamilyMember,
+          }}
+        />
+    </AppGradientScreen>
   );
 };
 

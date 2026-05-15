@@ -20,14 +20,14 @@ const SendOTPCard = () => {
         backgroundColor: '#FDFBFB',
         borderWidth: 1,
       }}>
-      <Text className="mb-4 text-[14px] font-semibold" style={{ color: Colors.textBlack }}>
+      <Text className="mb-4 text-sm font-semibold" style={{ color: Colors.textBlack }}>
         Mobile Number
       </Text>
 
       <View
         className="h-14 flex-row items-center rounded-full bg-white px-4"
         style={{ borderColor: '#E5D6D6', borderWidth: 1 }}>
-        <Text className="mr-3 text-[15px]" style={{ color: Colors.textBlack }}>
+        <Text className="mr-3 text-sm" style={{ color: Colors.textBlack }}>
           +91
         </Text>
 
@@ -52,7 +52,7 @@ const SendOTPCard = () => {
       {/* <View className="my-7 flex-row items-center">
         <View className="h-[1px] flex-1" style={{ backgroundColor: '#ECECEC' }} />
 
-        <Text className="mx-4 text-[12px] font-medium" style={{ color: '#A0A0A0' }}>
+        <Text className="mx-4 text-xs font-medium" style={{ color: '#A0A0A0' }}>
           OR ACCESS VIA
         </Text>
 
@@ -70,7 +70,7 @@ const SendOTPCard = () => {
           }}>
           <Ionicons name="finger-print-outline" size={18} color="#666666" />
 
-          <Text className="ml-2 text-[13px] font-medium" style={{ color: Colors.textGray }}>
+          <Text className="ml-2 text-sm font-medium" style={{ color: Colors.textGray }}>
             Touch ID
           </Text>
         </TouchableOpacity>
@@ -85,7 +85,7 @@ const SendOTPCard = () => {
           }}>
           <Ionicons name="scan-outline" size={18} color="#666666" />
 
-          <Text className="ml-2 text-[13px] font-medium" style={{ color: Colors.textGray }}>
+          <Text className="ml-2 text-sm font-medium" style={{ color: Colors.textGray }}>
             Face ID
           </Text>
         </TouchableOpacity>

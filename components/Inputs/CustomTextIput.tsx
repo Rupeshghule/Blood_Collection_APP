@@ -8,7 +8,7 @@ type CustomTextIputProps = TextInputProps & {
 };
 
 const CustomTextIput = forwardRef<TextInput, CustomTextIputProps>(
-  ({ placeholderTextColor = '#9CA3AF', textClassName = 'flex-1 text-[15px]', textStyle, style, ...props }, ref) => {
+  ({ placeholderTextColor = '#9CA3AF', textClassName = 'flex-1 text-sm', textStyle, style, ...props }, ref) => {
     return (
       <TextInput
         ref={ref}

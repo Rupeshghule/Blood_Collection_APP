@@ -9,7 +9,7 @@ const OTP_LENGTH = 4;
 
 const VerifyOTPCard = () => {
   const [otp, setOtp] = useState(Array.from({ length: OTP_LENGTH }, () => ''));
-  const inputRefs = useRef<Array<TextInput | null>>([]);
+  const inputRefs = useRef<(TextInput | null)[]>([]);
   const navigation = useNavigation();
 
   const handleChange = (value: string, index: number) => {
@@ -28,12 +28,12 @@ const VerifyOTPCard = () => {
       <View pointerEvents="none" style={styles.sideGlow} />
       <View pointerEvents="none" style={styles.glossHighlight} />
 
-      <Text className="text-center text-[13px] leading-6" style={{ color: Colors.textGray }}>
+      <Text className="text-center text-sm leading-6" style={{ color: Colors.textGray }}>
         Enter the 4-digit code sent to your
       </Text>
 
       <Text
-        className="mt-1 text-center text-[13px] font-semibold"
+        className="mt-1 text-center text-sm font-semibold"
         style={{ color: Colors.textGray }}>
         mobile number
       </Text>
@@ -49,7 +49,7 @@ const VerifyOTPCard = () => {
             onChangeText={(text) => handleChange(text, index)}
             keyboardType="number-pad"
             maxLength={1}
-            textClassName="h-14 w-14 rounded-2xl text-center text-[22px]"
+            textClassName="h-14 w-14 rounded-2xl text-center text-2xl"
             textStyle={{ color: '#222222' }}
             style={styles.otpInput}
           />
@@ -60,20 +60,20 @@ const VerifyOTPCard = () => {
         title="Verify & Continue"
         containerClassName="mt-8"
         buttonStyle={styles.buttonShadow}
-        onPress={() => navigation.navigate('DrawerNavigator', { screen: 'Tabs' })}
+        onPress={() => navigation.navigate('Tabs')}
       />
 
       <View className="mt-7 flex-row justify-center">
-        <Text className="text-[12px]" style={{ color: Colors.textGray }}>
+        <Text className="text-xs" style={{ color: Colors.textGray }}>
           {" Didn't receive the code?"}
         </Text>
 
         <TouchableOpacity activeOpacity={0.7}>
-          <Text className="ml-1 text-[12px] font-semibold text-[#D75D73]">Resend OTP</Text>
+          <Text className="ml-1 text-xs font-semibold text-[#D75D73]">Resend OTP</Text>
         </TouchableOpacity>
       </View>
 
-      <Text className="mt-6 text-center text-[12px]" style={{ color: Colors.textGray }}>
+      <Text className="mt-6 text-center text-xs" style={{ color: Colors.textGray }}>
         Wait for 00:59
       </Text>
     </View>

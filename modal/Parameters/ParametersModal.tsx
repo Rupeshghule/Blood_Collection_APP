@@ -1,11 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { ArrowRight, ChevronLeft, FlaskConical, Star } from 'lucide-react-native';
+import { ArrowRight, Star } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Colors } from 'Constants/Colors';
 import CustomButton from 'components/Buttons/CustomButton';
 import ParameterCard from 'components/cards/ParameterCard/ParameterCard';
+import { type PackageItem } from 'components/cards/PackagesCards/PackageCards';
 
 type ParametersModalProps = {
   visible: boolean;
@@ -22,7 +24,7 @@ const defaultSections = [
   {
     title: 'Complete Hemogram',
     count: 24,
-    items: [],
+    items: ['Average Blood Glucose (ABG)'],
   },
   {
     title: 'Diabetes',
@@ -57,8 +59,19 @@ const ParametersModal = ({
   note,
 }: ParametersModalProps) => {
   const [openSection, setOpenSection] = useState(1);
+  const navigation = useNavigation<any>();
 
   const heading = useMemo(() => title || 'Health Package', [title]);
+  const packageData: PackageItem = {
+    badge: 'Package',
+    audience: 'General',
+    title,
+    description,
+    parameters,
+    price,
+    oldPrice,
+    note,
+  };
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -142,6 +155,10 @@ const ParametersModal = ({
                   showArrow={false}
                   icon={<ArrowRight size={14} color={Colors.textWhite} />}
                   iconPosition="right"
+                  onPress={() => {
+                    onClose();
+                    navigation.navigate('BookingScreen', { packageData });
+                  }}
                 />
               </View>
             </View>
@@ -286,8 +303,8 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: 'rgba(255,255,255,0.88)',
     paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 26,
+    paddingTop: 0,
+    paddingBottom: 20,
     backgroundColor: 'rgba(255,255,255,0.9)',
   },
   packageDetails: {},

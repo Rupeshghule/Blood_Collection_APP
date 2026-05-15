@@ -36,7 +36,9 @@ const AddressCard = ({ title, address }: AddressCardProps) => {
             </Text>
           </View>
 
-          <Text style={{ color: Colors.textBlack }}>{address}</Text>
+          <Text className="text-sm leading-6" style={{ color: Colors.textBlack }}>
+            {address}
+          </Text>
         </LinearGradient>
       </View>
     </View>

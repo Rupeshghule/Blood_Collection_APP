@@ -34,7 +34,7 @@ const SearchBox = () => {
           <CustomTextIput
             placeholder="Search for blood tests or packages"
             placeholderTextColor="rgba(44, 62, 80, 0.62)"
-            textClassName="ml-3 flex-1 text-[14px]"
+            textClassName="ml-3 flex-1 text-sm"
             style={{ color: '#173042' }}
           />
         </View>

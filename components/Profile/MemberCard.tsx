@@ -9,18 +9,20 @@ type MemberCardProps = {
   relation: string;
   blood: string;
   imageUri: string;
+  onPress?: () => void;
 };
 
-const MemberCard = ({ name, relation, blood, imageUri }: MemberCardProps) => {
+const MemberCard = ({ name, relation, blood, imageUri, onPress }: MemberCardProps) => {
   return (
     <TouchableOpacity
       activeOpacity={0.85}
+      onPress={onPress}
       className="mb-4 flex-row items-center rounded-3xl bg-white px-4 py-4"
       style={styles.memberCardShadow}>
       <Image source={{ uri: imageUri }} className="h-[50px] w-[50px] rounded-full" />
 
       <View className="ml-4 flex-1">
-        <Text className="text-[16px] font-bold" style={{ color: Colors.textBlue }}>
+        <Text className="text-base font-bold" style={{ color: Colors.textBlue }}>
           {name}
         </Text>
 

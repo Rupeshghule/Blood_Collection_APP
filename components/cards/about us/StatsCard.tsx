@@ -32,7 +32,7 @@ export default function StatsCard() {
         {stats.map((item, index) => (
           <View key={index} className="mb-7 w-1/2 items-center">
             {/* Value */}
-            <Text className="text-[38px] font-extrabold" style={{ color: item.color }}>
+            <Text className="text-2xl font-extrabold" style={{ color: item.color }}>
               {item.value}
             </Text>
 

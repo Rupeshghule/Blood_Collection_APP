@@ -45,7 +45,7 @@ const DateTile = ({ label, value, active, onPress, icon, className = 'mr-3' }: D
 
       {icon ? <View className={hasValue ? 'mb-1' : 'mb-2'}>{icon}</View> : null}
 
-      <Text className="text-[10px] font-bold" style={{ color: active ? Colors.textWhite : Colors.textGray }}>
+      <Text className="text-xs font-bold" style={{ color: active ? Colors.textWhite : Colors.textGray }}>
         {label}
       </Text>
 

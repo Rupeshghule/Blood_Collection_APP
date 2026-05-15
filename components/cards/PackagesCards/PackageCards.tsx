@@ -18,33 +18,15 @@ export type PackageItem = {
   note: string;
 };
 
-type PackageCardProps = PackageItem & {
+type PackageCardProps = {
+  item: PackageItem;
   fullWidth?: boolean;
 };
 
-const PackageCard = ({
-  badge,
-  audience,
-  title,
-  description,
-  parameters,
-  price,
-  oldPrice,
-  note,
-  fullWidth = false,
-}: PackageCardProps) => {
+const PackageCard = ({ item, fullWidth = false }: PackageCardProps) => {
   const [isParametersVisible, setIsParametersVisible] = useState(false);
   const navigation = useNavigation<any>();
-  const packageData = {
-    badge,
-    audience,
-    title,
-    description,
-    parameters,
-    price,
-    oldPrice,
-    note,
-  };
+  const packageData = item;
   const handleOpenPackage = () =>
     navigation.navigate('PackageDetails', {
       packageData,
@@ -61,14 +43,14 @@ const PackageCard = ({
         <View className="flex-row items-center justify-between">
           <View className="self-start rounded-full bg-[#E7F4FF] px-4 py-1">
             <Text
-              className="text-[10px] font-bold uppercase tracking-[1px]"
+              className="text-xs font-bold uppercase tracking-[1px]"
               style={{ color: Colors.textBlue }}>
-              {badge}
+              {item.badge}
             </Text>
           </View>
 
           <Text className="text-sm font-medium" style={{ color: Colors.textGray }}>
-            {audience}
+            {item.audience}
           </Text>
         </View>
 
@@ -77,32 +59,32 @@ const PackageCard = ({
             numberOfLines={2}
             className="text-xl font-extrabold leading-8"
             style={{ color: Colors.textBlack }}>
-            {title}
+            {item.title}
           </Text>
 
           <Text className="mt-1 text-sm leading-6" style={{ color: Colors.textGray }}>
-            {description}
+            {item.description}
           </Text>
 
           <View className="mt-1 flex-row items-center">
             <FlaskConical size={14} color={Colors.textBlue} strokeWidth={2.3} />
             <Text className="ml-2 text-sm font-bold" style={{ color: Colors.textBlack }}>
-              {parameters}
+              {item.parameters}
             </Text>
           </View>
 
           <View className="mt-2 flex-row items-center">
             <Text className="text-xl font-extrabold" style={{ color: Colors.textRed }}>
-              {price}
+              {item.price}
             </Text>
 
             <Text className="text-md ml-3 line-through" style={{ color: Colors.textGray }}>
-              {oldPrice}
+              {item.oldPrice}
             </Text>
           </View>
 
           <Text className="mt-1 text-sm" style={{ color: Colors.textBlue }}>
-            {note}
+            {item.note}
           </Text>
         </View>
 
@@ -140,12 +122,12 @@ const PackageCard = ({
       <ParametersModal
         visible={isParametersVisible}
         onClose={() => setIsParametersVisible(false)}
-        title={title}
-        description={description}
-        parameters={parameters}
-        price={price}
-        oldPrice={oldPrice}
-        note={note}
+        title={item.title}
+        description={item.description}
+        parameters={item.parameters}
+        price={item.price}
+        oldPrice={item.oldPrice}
+        note={item.note}
       />
     </>
   );

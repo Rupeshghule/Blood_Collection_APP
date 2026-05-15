@@ -21,9 +21,9 @@ const ProfileSettingCard = ({ title, subtitle, icon: Icon, onPress }: ProfileSet
       </View>
 
       <View className="ml-4 flex-1">
-        <Text className="text-[15px] font-bold text-[#1A1A1C]">{title}</Text>
+        <Text className="text-sm font-bold text-[#1A1A1C]">{title}</Text>
 
-        <Text className="mt-1 text-[12px] leading-5 text-[#7C7C80]">{subtitle}</Text>
+        <Text className="mt-1 text-xs leading-5 text-[#7C7C80]">{subtitle}</Text>
       </View>
 
       <ChevronRight size={18} color="#A1A1AA" strokeWidth={2.3} />

@@ -5,6 +5,8 @@ import { Colors } from 'Constants/Colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SearchBox from 'components/Search/SearchBox';
 import PackageCard from 'components/cards/PackagesCards/PackageCards';
+import PackageFilterChips from 'components/Packages/PackageFilterChips';
+import { FilterChipIcons } from 'components/Packages/FilterChip';
 
 const packages = [
   {
@@ -57,6 +59,17 @@ const packages = [
   },
 ];
 
+const packageFilters = [
+  { id: 'all', label: 'All', icon: FilterChipIcons.all },
+  { id: 'executive', label: 'Executive', icon: FilterChipIcons.test },
+  { id: 'wellness', label: 'Wellness', icon: FilterChipIcons.health },
+  { id: 'organ', label: 'Organ', icon: FilterChipIcons.test },
+  { id: 'women', label: 'Women', icon: FilterChipIcons.health },
+  { id: 'senior', label: 'Senior', icon: FilterChipIcons.health },
+  { id: 'specialty', label: 'Specialty', icon: FilterChipIcons.test },
+];
+
+
 const AllPackegesSreen = () => {
   return (
     <LinearGradient
@@ -68,7 +81,7 @@ const AllPackegesSreen = () => {
       <SafeAreaView className="flex-1">
         <View className='mb-4'>
           <View className="px-4 pt-2">
-            <Text className="text-3xl font-extrabold" style={{ color: Colors.textBlack }}>
+            <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlack }}>
               All Packages
             </Text>
             <Text className="mt-1 text-sm" style={{ color: Colors.textGray }}>
@@ -77,6 +90,7 @@ const AllPackegesSreen = () => {
           </View>
 
           <SearchBox />
+           <PackageFilterChips filters={packageFilters} defaultSelectedId="all" />
         </View>
         <FlatList
           data={packages}
@@ -85,17 +99,7 @@ const AllPackegesSreen = () => {
           contentContainerStyle={{ paddingBottom: 32 }}
           renderItem={({ item }) => (
             <View className="mb-4 px-4">
-              <PackageCard
-                badge={item.badge}
-                audience={item.audience}
-                title={item.title}
-                description={item.description}
-                parameters={item.parameters}
-                price={item.price}
-                oldPrice={item.oldPrice}
-                note={item.note}
-                fullWidth
-              />
+              <PackageCard item={item} fullWidth />
             </View>
           )}
         />

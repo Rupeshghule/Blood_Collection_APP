@@ -32,15 +32,15 @@ const ReportCard = ({ report }: ReportCardProps) => {
         </View>
 
         <View className="flex-1">
-          <Text className="text-[16px] font-extrabold leading-6" style={{ color: Colors.textBlack }}>
+          <Text className="text-base font-extrabold leading-6" style={{ color: Colors.textBlack }}>
             {title}
           </Text>
 
-          <Text className="mt-1 text-[13px]" style={{ color: Colors.textGray }}>
+          <Text className="mt-1 text-sm" style={{ color: Colors.textGray }}>
             {date} • Lab ID:
           </Text>
 
-          <Text className="text-[13px] font-medium" style={{ color: Colors.textGray }}>
+          <Text className="text-sm font-medium" style={{ color: Colors.textGray }}>
             {labId}
           </Text>
 
@@ -57,7 +57,7 @@ const ReportCard = ({ report }: ReportCardProps) => {
             rounded="rounded-full"
             className="mt-4 self-start px-4 py-3"
             buttonStyle={{ shadowOpacity: 0, shadowRadius: 0, elevation: 0 }}
-            size="text-[14px]"
+            size="text-sm"
           />
         </View>
       </View>

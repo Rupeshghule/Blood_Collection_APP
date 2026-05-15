@@ -10,6 +10,7 @@ type PricingSummaryCardProps = {
   collectionCharges: string;
   serviceTax: string;
   totalAmount: string;
+  totalAmountSize?: string;
 };
 
 const PricingSummaryCard = ({
@@ -19,6 +20,7 @@ const PricingSummaryCard = ({
   collectionCharges,
   serviceTax,
   totalAmount,
+  totalAmountSize = 'text-2xl',
 }: PricingSummaryCardProps) => {
   return (
     <View className="mt-8 rounded-[30px] bg-white p-6" style={styles.summaryCard}>
@@ -63,7 +65,7 @@ const PricingSummaryCard = ({
           Total Amount
         </Text>
 
-        <Text className="text-2xl font-extrabold" style={{ color: Colors.textBlue }}>
+        <Text className={`${totalAmountSize} font-extrabold`} style={{ color: Colors.textBlue }}>
           {totalAmount}
         </Text>
       </View>

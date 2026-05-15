@@ -105,10 +105,10 @@ const TimeSlotGrid = ({ selectedSlot, onSelectSlot }: TimeSlotGridProps) => {
           className="h-[78px] w-[78px] items-center justify-center rounded-[20px]"
           style={styles.pickerButton}>
           <Clock3 size={16} color={Colors.textWhite} strokeWidth={2.2} />
-          <Text className="mt-1 text-[10px] font-bold" style={{ color: Colors.textWhite }}>
+          <Text className="mt-1 text-xs font-bold" style={{ color: Colors.textWhite }}>
             PICK
           </Text>
-          <Text className="text-[10px] font-extrabold" style={{ color: Colors.textWhite }}>
+          <Text className="text-xs font-extrabold" style={{ color: Colors.textWhite }}>
             TIME
           </Text>
         </TouchableOpacity>

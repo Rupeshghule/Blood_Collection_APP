@@ -58,11 +58,11 @@ const ChooseUsCard = () => {
                 />
               </View>
 
-              <Text className="text-[15px] font-bold" style={{ color: Colors.textBlack }}>
+              <Text className="text-sm font-bold" style={{ color: Colors.textBlack }}>
                 {item.title}
               </Text>
 
-              <Text className="mt-2 text-[12px] leading-5" style={{ color: Colors.textGray }}>
+              <Text className="mt-2 text-xs leading-5" style={{ color: Colors.textGray }}>
                 {item.desc}
               </Text>
             </View>

@@ -1,11 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome } from '@expo/vector-icons';
 import { Clock3, MapPin, MessageCircle, Phone } from 'lucide-react-native';
 import { Colors } from 'Constants/Colors';
+import { sendWhatsAppMessage } from '../../../utils/sendWhatsAppMessage';
 
-export default function ContactCard() {
+type ContactCardProps = {
+  title?: string;
+  whatsAppMessage?: string;
+};
+
+export default function ContactCard({
+  title = `Book Your Test${'\n'}From Home`,
+  whatsAppMessage = 'Hello, I would like to know more about your blood collection service and book a test.',
+}: ContactCardProps) {
+  const handleOpenInstagram = async () => {
+    await Linking.openURL(
+      'https://www.instagram.com/hadapsar.blood.collection_labs?igsh=MTAxaWxseWUyMmd1bA=='
+    );
+  };
+
+  const handleOpenWhatsApp = async () => {
+    await sendWhatsAppMessage({
+      message: whatsAppMessage,
+    });
+  };
+
   return (
     <View className="w-full max-w-[360px] py-5">
       <LinearGradient
@@ -20,11 +41,11 @@ export default function ContactCard() {
             <Phone size={20} color={Colors.textBlue} strokeWidth={2.4} />
           </View>
 
-          <Text className="mt-4 text-center text-[24px] font-extrabold" style={styles.title}>
-            Book Your Test{'\n'}From Home
+          <Text className="mt-4 text-center text-2xl font-extrabold" style={styles.title}>
+            {title}
           </Text>
 
-          <Text className="mt-3 text-center text-[14px] leading-6" style={styles.description}>
+          <Text className="mt-3 text-center text-sm leading-6" style={styles.description}>
             Quick support, hygienic collection, and trusted diagnostics at your convenience.
           </Text>
 
@@ -33,21 +54,21 @@ export default function ContactCard() {
             style={styles.infoCard}>
             <View className="flex-row items-center">
               <Phone size={15} color={Colors.textRed} strokeWidth={2.4} />
-              <Text className="ml-2 text-[13px] font-semibold" style={{ color: Colors.textBlack }}>
+              <Text className="ml-2 text-sm font-semibold" style={{ color: Colors.textBlack }}>
                 +91 83902 45575
               </Text>
             </View>
 
             <View className="mt-3 flex-row items-center">
               <MapPin size={15} color={Colors.textRed} strokeWidth={2.4} />
-              <Text className="ml-2 text-[13px]" style={{ color: Colors.textBlack }}>
+              <Text className="ml-2 text-sm" style={{ color: Colors.textBlack }}>
                 Hadapsar, Pune
               </Text>
             </View>
 
             <View className="mt-3 flex-row items-center">
               <Clock3 size={15} color={Colors.textRed} strokeWidth={2.4} />
-              <Text className="ml-2 flex-1 text-[13px]" style={{ color: Colors.textBlack }}>
+              <Text className="ml-2 flex-1 text-sm" style={{ color: Colors.textBlack }}>
                 24/7 Home Collection (Appointment)
               </Text>
             </View>
@@ -55,16 +76,20 @@ export default function ContactCard() {
 
           <TouchableOpacity
             activeOpacity={0.85}
+            onPress={handleOpenWhatsApp}
             className="mt-5 flex-row items-center"
             style={styles.button}>
             <MessageCircle size={16} color={Colors.textWhite} strokeWidth={2.5} />
-            <Text className="ml-2 text-[14px] font-bold" style={{ color: Colors.textWhite }}>
+            <Text className="ml-2 text-sm font-bold" style={{ color: Colors.textWhite }}>
               WhatsApp
             </Text>
           </TouchableOpacity>
 
           <View className="mt-5 flex-row items-center">
-            <TouchableOpacity activeOpacity={0.85} style={styles.socialIcon}>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={styles.socialIcon}
+              onPress={handleOpenInstagram}>
               <FontAwesome name="instagram" size={15} color="#E4405F" />
             </TouchableOpacity>
 
@@ -72,7 +97,10 @@ export default function ContactCard() {
               <FontAwesome name="facebook" size={15} color="#1877F2" />
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity={0.85} style={styles.socialIcon}>
+            <TouchableOpacity
+              activeOpacity={0.85}
+              style={styles.socialIcon}
+              onPress={handleOpenWhatsApp}>
               <MessageCircle size={15} color="#25D366" strokeWidth={2.3} fill="#25D366" />
             </TouchableOpacity>
           </View>
